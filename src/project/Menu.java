@@ -1,6 +1,7 @@
 package project;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +18,8 @@ public class Menu extends Game {
         System.out.println("| 2. Instructions          |");
         System.out.println("| 3. History               |");
         System.out.println("| 4. Leaderboard           |");
-        System.out.println("| 5. Exit                  |");
+        System.out.println("| 5. Reset Score           |");
+        System.out.println("| 6. Exit                  |");
         System.out.println("+--------------------------+");
         System.out.print("Enter your choice: ");
         Scanner input = new Scanner(System.in);
@@ -110,6 +112,32 @@ public class Menu extends Game {
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static void resetScore(){
+        clrscr();
+        System.out.println("+--------------------------+");
+        System.out.println("|        Reset Score       |");
+        System.out.println("+--------------------------+");
+        System.out.println("| Are you sure you want to |");
+        System.out.println("| reset your score?        |");
+        System.out.println("|(This choice is permanent)|");
+        System.out.println("|           (Y/N)          |");
+        System.out.println("+--------------------------+");
+        Scanner scan = new Scanner(System.in);
+        String scoreReset = scan.nextLine();
+        if( scoreReset.equalsIgnoreCase("Y") ){
+            try {
+                clearScore();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else{
+
+        }
+            
+        
     }
 
 }
