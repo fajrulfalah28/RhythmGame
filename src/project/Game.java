@@ -237,6 +237,10 @@ public class Game {
 		updateLeaderboard(name, score, combo);
 	}
 
+	public static void clearScore(){
+		
+	}
+
 	public static void easy() {
 		gameResetter();
 		final Timer timerEasy = new Timer();
