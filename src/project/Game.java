@@ -20,7 +20,7 @@ import javax.sound.sampled.FloatControl;
 
 public class Game {
 	public static boolean running = false;
-	private static final int reach = 30;
+	private static final int reach = 100;
 	static String scoreList = "";
 	static String playerInfo = "";
 	public static String name;
@@ -287,7 +287,7 @@ public class Game {
 			public void run() {
 				Setup.gameSystem();
 				int scoreFinal[] = Setup.returnScore();
-				if (scoreFinal[0] >= reach * 3) {
+				if (scoreFinal[0] >= reach * 5) {
 					timerMedium.cancel();
 					running = false;
 					System.out.println("\nCongratulations, you won!");
