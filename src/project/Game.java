@@ -32,7 +32,7 @@ public class Game {
 
 		if (score.exists() == false) {
 			try {
-				createScore();
+				score.createNewFile();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
@@ -40,7 +40,7 @@ public class Game {
 
 		if (leader.exists() == false) {
 			try {
-				createLeaderboard();
+				leader.createNewFile();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
@@ -103,6 +103,17 @@ public class Game {
 					System.out.println("\nGoodbye!");
 					System.exit(0);
 					break;
+				case 6:
+					try {
+						clearScore();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					System.out.println(scoreList);
+					Scanner scan1 = new Scanner(System.in);
+					String placeholder1 = scan1.nextLine();
+					break;
 				default:
 					System.out.println("Invalid choice, please try again.");
 					Scanner scan = new Scanner(System.in);
@@ -157,11 +168,12 @@ public class Game {
 			}
 		}
 	}
+	// ini create score gue ganti sama createNewFile aja saving space sama leaderboard
 
-	public static void createScore() throws IOException {
-		FileWriter fw = new FileWriter("score.txt");
-		fw.close();
-	}
+	// public static void createScore() throws IOException {
+	// 	FileWriter fw = new FileWriter("score.txt");
+	// 	fw.close();
+	// }
 
 	public static void writeScore(String name, int Score, int Combo, String diff) throws IOException {
 		FileWriter fw = new FileWriter("score.txt", true);
@@ -175,10 +187,10 @@ public class Game {
 		fw.close();
 	}
 
-	public static void createLeaderboard() throws IOException {
-		FileWriter fw = new FileWriter("leader.txt");
-		fw.close();
-	}
+	// public static void createLeaderboard() throws IOException {
+	// 	FileWriter fw = new FileWriter("leader.txt");
+	// 	fw.close();
+	// }
 
 	public static List<String> readLeaderboard() throws FileNotFoundException {
 		List<String> leaderboard = new ArrayList<>();
@@ -237,10 +249,13 @@ public class Game {
 		updateLeaderboard(name, score, combo);
 	}
 
-	public static void clearScore(){
-		
+	public static void clearScore() throws IOException{
+		score.delete();
+		leader.delete();
+		score.createNewFile();
+		leader.delete();
 	}
-
+	
 	public static void easy() {
 		gameResetter();
 		final Timer timerEasy = new Timer();
